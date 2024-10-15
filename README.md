@@ -7,6 +7,56 @@
 
 # Q&A
 
+### Q: On what chains are the smart contracts going to be deployed?
+Deploy Solana-Vault on Solana, and deploy SolConnector on Orderly Chain (OP Stack L2 EVM)
+___
+
+### Q: If you are integrating tokens, are you allowing only whitelisted tokens to work with the codebase or any complying with the standard? Are they assumed to have certain properties, e.g. be non-reentrant? Are there any types of [weird tokens](https://github.com/d-xo/weird-erc20) you want to integrate?
+Yes, currently only support USDC deposit on Solana chain
+___
+
+### Q: Are there any limitations on values set by admins (or other roles) in the codebase, including restrictions on array lengths?
+No limitation on values
+___
+
+### Q: Are there any limitations on values set by admins (or other roles) in protocols you integrate with, including restrictions on array lengths?
+No
+___
+
+### Q: For permissioned functions, please list all checks and requirements that will be made before calling the function.
+Require caller is Owner/Admin account/address
+___
+
+### Q: Is the codebase expected to comply with any EIPs? Can there be/are there any deviations from the specification?
+No, it is a Solana program
+___
+
+### Q: Are there any off-chain mechanisms for the protocol (keeper bots, arbitrage bots, etc.)? We assume they won't misbehave, delay, or go offline unless specified otherwise.
+No
+___
+
+### Q: If the codebase is to be deployed on an L2, what should be the behavior of the protocol in case of sequencer issues (if applicable)? Should Sherlock assume that the Sequencer won't misbehave, including going offline?
+We hold the L2, Sequencer won't misbehave
+___
+
+### Q: What properties/invariants do you want to hold even if breaking them has a low/unknown impact?
+The USDC balance of Vault pgram on Solana is no less than the Vault balance record on Ledger contract  on Orderly chain
+___
+
+### Q: Please list any known issues and explicitly state the acceptable risks for each known issue.
+Some PDA initilization call has no admin check
+___
+
+### Q: We will report issues where the core protocol functionality is inaccessible for at least 7 days. Would you like to override this value?
+No
+___
+
+### Q: Please provide links to previous audits (if any).
+No
+___
+
+
+
 # Audit scope
 
 
