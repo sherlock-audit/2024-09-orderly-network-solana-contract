@@ -44,7 +44,7 @@ The USDC balance of Vault pgram on Solana is no less than the Vault balance reco
 ___
 
 ### Q: Please list any known issues and explicitly state the acceptable risks for each known issue.
-Some PDA initilization call has no admin check
+Front-running during PDA initialisation is considered known and acceptable.
 ___
 
 ### Q: We will report issues where the core protocol functionality is inaccessible for at least 7 days. Would you like to override this value?
