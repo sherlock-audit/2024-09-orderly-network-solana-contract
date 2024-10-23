@@ -84,8 +84,6 @@ ___
 - [sol-cc/contracts/layerzerolabs/lz-evm-oapp-v2/contracts/precrime/libs/Packet.sol](sol-cc/contracts/layerzerolabs/lz-evm-oapp-v2/contracts/precrime/libs/Packet.sol)
 - [sol-cc/contracts/library/MsgCodec.sol](sol-cc/contracts/library/MsgCodec.sol)
 - [sol-cc/contracts/library/Utils.sol](sol-cc/contracts/library/Utils.sol)
-- [sol-cc/contracts/mocks/LedgerMock.sol](sol-cc/contracts/mocks/LedgerMock.sol)
-- [sol-cc/contracts/mocks/SolanaMock.sol](sol-cc/contracts/mocks/SolanaMock.sol)
 
 [solana-vault @ bd8b6dbeb3300319fd9dad262298ec0cd1152344](https://github.com/OrderlyNetwork/solana-vault/tree/bd8b6dbeb3300319fd9dad262298ec0cd1152344)
 - [solana-vault/packages/solana/contracts/programs/solana-vault/src/errors.rs](solana-vault/packages/solana/contracts/programs/solana-vault/src/errors.rs)
@@ -152,6 +150,4 @@ ___
 - [sol-cc/contracts/layerzerolabs/lz-evm-oapp-v2/contracts/precrime/libs/Packet.sol](sol-cc/contracts/layerzerolabs/lz-evm-oapp-v2/contracts/precrime/libs/Packet.sol)
 - [sol-cc/contracts/library/MsgCodec.sol](sol-cc/contracts/library/MsgCodec.sol)
 - [sol-cc/contracts/library/Utils.sol](sol-cc/contracts/library/Utils.sol)
-- [sol-cc/contracts/mocks/LedgerMock.sol](sol-cc/contracts/mocks/LedgerMock.sol)
-- [sol-cc/contracts/mocks/SolanaMock.sol](sol-cc/contracts/mocks/SolanaMock.sol)
 
