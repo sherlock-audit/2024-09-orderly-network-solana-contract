@@ -7,16 +7,16 @@ use anchor_lang::prelude::*;
 use errors::*;
 use instructions::*;
 
-use oapp::endpoint::MessagingReceipt;
+use oapp::endpoint::{MessagingFee, MessagingReceipt};
 
-declare_id!("AdA9VFXwkKPj51SZxSQwJ4bqPJiAJqidCwPhb8zSJndx");
+declare_id!("EYJq9eU4GMRUriUJBgGoZ8YLQBXcWaciXuSsEXE7ieQS");
 
 #[program]
 pub mod solana_vault {
     use super::*;
 
-    pub fn init_vault(ctx: Context<InitVault>, params: InitVaultParams) -> Result<()> {
-        InitVault::apply(ctx, &params)
+    pub fn init_vault(mut ctx: Context<InitVault>, params: InitVaultParams) -> Result<()> {
+        InitVault::apply(&mut ctx, &params)
     }
 
     pub fn deposit<'info>(
