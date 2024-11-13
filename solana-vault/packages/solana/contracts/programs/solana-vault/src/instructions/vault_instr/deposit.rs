@@ -7,8 +7,8 @@ use anchor_spl::{
 use oapp::endpoint::{instructions::SendParams as EndpointSendParams, MessagingReceipt};
 
 use crate::instructions::{
-    LzMessage, MsgType, VaultDepositParams, BROKER_SEED, ENFORCED_OPTIONS_SEED, OAPP_SEED,
-    PEER_SEED, TOKEN_SEED, VAULT_AUTHORITY_SEED,
+    validate_account_id, LzMessage, MsgType, VaultDepositParams, BROKER_SEED,
+    ENFORCED_OPTIONS_SEED, OAPP_SEED, PEER_SEED, TOKEN_SEED, VAULT_AUTHORITY_SEED,
 };
 
 use crate::errors::VaultError;
@@ -45,7 +45,10 @@ pub struct Deposit<'info> {
     )]
     pub vault_token_account: Box<Account<'info, TokenAccount>>,
 
-    #[account()]
+    #[account(
+        constraint = deposit_token.key() == allowed_token.mint_account @ VaultError::TokenNotAllowed,
+        mint::token_program = token_program
+    )]
     pub deposit_token: Box<Account<'info, Mint>>,
 
     #[account(
@@ -109,9 +112,16 @@ impl<'info> Deposit<'info> {
         deposit_params: &DepositParams,
         oapp_params: &OAppSendParams,
     ) -> Result<MessagingReceipt> {
+        if !validate_account_id(
+            &deposit_params.account_id,
+            &deposit_params.user_address,
+            &deposit_params.broker_hash,
+        ) {
+            return Err(VaultError::InvalidAccountId.into());
+        }
         transfer(
             ctx.accounts.transfer_token_ctx(),
-            deposit_params.token_amount,
+            deposit_params.token_amount as u128, // should be u64 here
         )?;
 
         msg!("User deposited : {}", deposit_params.token_amount);
