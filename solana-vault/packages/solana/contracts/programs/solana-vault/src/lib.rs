@@ -1,7 +1,7 @@
-mod errors;
-mod events;
-mod instructions;
-mod state;
+pub mod errors;
+pub mod events;
+pub mod instructions;
+pub mod state;
 
 use anchor_lang::prelude::*;
 use errors::*;
@@ -9,14 +9,14 @@ use instructions::*;
 
 use oapp::endpoint::MessagingReceipt;
 
-declare_id!("AdA9VFXwkKPj51SZxSQwJ4bqPJiAJqidCwPhb8zSJndx");
+declare_id!("EYJq9eU4GMRUriUJBgGoZ8YLQBXcWaciXuSsEXE7ieQS");
 
 #[program]
 pub mod solana_vault {
     use super::*;
 
-    pub fn init_vault(ctx: Context<InitVault>, params: InitVaultParams) -> Result<()> {
-        InitVault::apply(ctx, &params)
+    pub fn set_vault(ctx: Context<SetVault>, params: SetVaultParams) -> Result<()> {
+        SetVault::apply(ctx, &params)
     }
 
     pub fn deposit<'info>(
@@ -31,20 +31,11 @@ pub mod solana_vault {
         InitOApp::apply(&mut ctx, &params)
     }
 
-    pub fn reset_oapp(mut ctx: Context<ResetOApp>) -> Result<()> {
-        ResetOApp::apply(&mut ctx)
-    }
-
-    pub fn reinit_oapp(mut ctx: Context<ReinitOApp>, params: ReinitOAppParams) -> Result<()> {
-        ReinitOApp::apply(&mut ctx, &params)
-    }
-
-    pub fn reset_vault(mut ctx: Context<ResetVault>) -> Result<()> {
-        ResetVault::apply(&mut ctx)
-    }
-
-    pub fn reinit_vault(mut ctx: Context<ReinitVault>, params: ReinitVaultParams) -> Result<()> {
-        ReinitVault::apply(&mut ctx, &params)
+    pub fn set_account_list(
+        mut ctx: Context<SetAccountList>,
+        params: SetAccountListParams,
+    ) -> Result<()> {
+        SetAccountList::apply(&mut ctx, &params)
     }
 
     pub fn set_broker(mut ctx: Context<SetBroker>, params: SetBrokerParams) -> Result<()> {
@@ -62,7 +53,7 @@ pub mod solana_vault {
         SetOrderDelivery::apply(&mut ctx, &params)
     }
 
-    pub fn oapp_quote(ctx: Context<OAppQuote>, params: OAppQuoteParams) -> Result<MessagingFee> {
+    pub fn oapp_quote(ctx: Context<OAppQuote>, params: DepositParams) -> Result<MessagingFee> {
         OAppQuote::apply(&ctx, &params)
     }
 
